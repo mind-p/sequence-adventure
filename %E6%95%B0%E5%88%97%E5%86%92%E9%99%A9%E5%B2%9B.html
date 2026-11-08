@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数列冒险岛 · 高中数学闯关</title>
+<style>
+:root{--ink:#17233d;--muted:#68758f;--blue:#526dff;--cyan:#67d8d0;--paper:#f5f7ff;--line:#e4e9f5;--gold:#ffca68}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 5%,#e4f7ff,transparent 32%),radial-gradient(circle at 90% 20%,#eee7ff,transparent 30%),var(--paper);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);min-height:100vh}
+.wrap{max-width:1040px;margin:auto;padding:24px 18px 50px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.brand{font-weight:900;letter-spacing:.3px;font-size:19px}.brand span{color:var(--blue)}.stats{display:flex;gap:9px}.pill{background:#fff;border:1px solid var(--line);border-radius:99px;padding:9px 13px;font-size:13px;font-weight:750;box-shadow:0 5px 18px #24365b0a}
+.hero{background:linear-gradient(120deg,#273d82,#536eff 65%,#7c8cff);color:#fff;border-radius:25px;padding:26px 28px;position:relative;overflow:hidden;box-shadow:0 18px 40px #526dff2b}.hero:after{content:"∑";position:absolute;right:35px;top:-32px;font-size:170px;font-weight:900;color:#ffffff12}.eyebrow{font-size:12px;letter-spacing:2px;opacity:.8;font-weight:800}.hero h1{font-size:clamp(27px,5vw,42px);margin:7px 0}.hero p{opacity:.88;margin:0;max-width:580px;line-height:1.7}.progress{height:7px;background:#ffffff38;border-radius:99px;margin-top:20px;max-width:500px;overflow:hidden}.progress i{display:block;height:100%;background:var(--gold);width:0%;border-radius:99px;transition:.3s}
+.layout{display:grid;grid-template-columns:245px 1fr;gap:18px;margin-top:20px}.side,.game{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 30px #25345b0a}.side{padding:18px;height:max-content}.side h3{margin:2px 0 14px;font-size:15px}.level{display:flex;align-items:center;gap:11px;padding:12px;border-radius:14px;margin:6px 0;cursor:pointer;border:1px solid transparent;transition:.2s}.level.active{background:#eef1ff;border-color:#dce2ff}.level.locked{opacity:.4;cursor:not-allowed}.level .emoji{font-size:23px}.level b{display:block;font-size:13px}.level small{color:var(--muted);font-size:11px}.game{padding:clamp(18px,4vw,30px);min-height:430px}.gamehead{display:flex;justify-content:space-between;align-items:center;gap:12px}.tag{background:#eef1ff;color:#485ee8;padding:7px 11px;border-radius:99px;font-size:12px;font-weight:800}.qcount{color:var(--muted);font-size:13px;font-weight:700}.question{font-size:clamp(20px,3vw,26px);font-weight:850;line-height:1.5;margin:25px 0 10px}.hint{color:var(--muted);font-size:14px;line-height:1.7}.sequence{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0}.num{background:#f2f5ff;border:1px solid #e2e8ff;border-radius:13px;min-width:55px;text-align:center;padding:13px 10px;font-size:20px;font-weight:850;color:#344bba}.num.blank{background:#fff8e9;border:1px dashed #efb94d;color:#bd7d12}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}.answer{border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:15px;font-size:17px;font-weight:800;color:var(--ink);cursor:pointer;transition:.15s}.answer:hover{border-color:#9aa8ff;background:#f8f9ff;transform:translateY(-1px)}.answer:disabled{cursor:default;transform:none}.answer.correct{background:#e9fbf4;border-color:#55c99c;color:#167c58}.answer.wrong{background:#fff0ef;border-color:#f29b91;color:#bd5146}.feedback{display:none;margin-top:17px;padding:15px;border-radius:14px;line-height:1.7;font-size:14px}.feedback.show{display:block}.feedback.good{background:#eafaf3;color:#176b50}.feedback.bad{background:#fff5e8;color:#875a19}.actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:20px}.btn{border:0;border-radius:13px;padding:12px 18px;background:var(--blue);color:#fff;font-weight:800;cursor:pointer;font-size:14px}.btn.secondary{background:#eef1ff;color:#465be2}.btn:disabled{opacity:.35;cursor:not-allowed}.note{font-size:12px;color:var(--muted)}.finish{text-align:center;padding:35px 10px}.finish .big{font-size:60px}.finish h2{font-size:29px}.finish p{color:var(--muted);line-height:1.8}.hidden{display:none}
+@media(max-width:720px){.wrap{padding:14px 12px 35px}.top{align-items:flex-start}.stats{gap:5px}.pill{padding:8px 9px;font-size:11px}.layout{grid-template-columns:1fr}.side{padding:13px}.side h3{margin:2px 0 8px}.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.level{padding:9px 6px;display:block;text-align:center;margin:0}.level .emoji{font-size:20px}.level b{font-size:11px}.level small{font-size:10px}.hero{padding:22px 20px}.hero:after{right:8px;font-size:120px}.game{min-height:400px}.answers{gap:8px}.answer{padding:14px 8px}.num{min-width:48px;padding:11px 7px;font-size:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div class="brand">🏝️ 数列<span>冒险岛</span></div><div class="stats"><div class="pill">⭐ 积分 <b id="score">0</b></div><div class="pill">🔥 连对 <b id="streak">0</b></div></div></header>
+  <section class="hero"><div class="eyebrow">MATH QUEST · HIGH SCHOOL</div><h1>破解数列密码，开启宝藏！</h1><p>从规律观察到通项公式，再到求和挑战。每答对一道题，就离终点更近一步。</p><div class="progress"><i id="progress"></i></div></section>
+  <main class="layout">
+    <aside class="side"><h3>🗺️ 选择冒险关卡</h3><div class="levels" id="levels"></div></aside>
+    <section class="game">
+      <div id="quiz">
+        <div class="gamehead"><span class="tag" id="chapter">第一站 · 规律森林</span><span class="qcount" id="qcount">第 1 / 5 题</span></div>
+        <div class="question" id="question"></div><div class="hint" id="hint"></div>
+        <div class="sequence" id="sequence"></div><div class="answers" id="answers"></div>
+        <div class="feedback" id="feedback"></div>
+        <div class="actions"><span class="note" id="tip">选出正确答案，获得 10 分</span><button class="btn" id="next" disabled>下一题 →</button></div>
+      </div>
+      <div id="finish" class="finish hidden"><div class="big">🏆</div><h2>本关挑战完成！</h2><p id="result"></p><button class="btn" onclick="restartLevel()">再挑战一次</button></div>
+    </section>
+  </main>
+</div>
+<script>
+const chapters=[
+ {name:"规律森林",emoji:"🌱",desc:"认识数列",qs:[
+  {q:"观察数列，找出下一个数：",seq:["2","5","8","11","?"],opts:["13","14","15","16"],a:"14",why:"相邻两项的差都是 3，这是等差数列。下一项 = 11 + 3 = 14。"},
+  {q:"数列 1，4，9，16，25，… 的下一项是？",opts:["30","32","36","49"],a:"36",why:"它们依次是 1²、2²、3²、4²、5²，所以下一项是 6² = 36。"},
+  {q:"数列 3，6，12，24，… 的下一项是？",opts:[" treinta","36","48","60"],a:"48",why:"每一项都乘以 2，下一项为 24 × 2 = 48。"},
+  {q:"下列哪一组数可以构成等差数列？",opts:["1，2，4，8","2，5，8，11","1，3，6，10","2，4，8，16"],a:"2，5，8，11",why:"等差数列要求相邻两项的差相等，这组数的公差都是 3。"},
+  {q:"一个数列的前几项为 5，9，13，17，…，公差是多少？",opts:["2","3","4","5"],a:"4",why:"公差 d = 9 − 5 = 4，也可以用任意相邻两项相减。"}
+ ]},
+ {name:"等差山脉",emoji:"⛰️",desc:"公差与通项",qs:[
+  {q:"等差数列 2，5，8，11，… 的公差 d 是多少？",opts:["2","3","5","8"],a:"3",why:"公差 d = a₂ − a₁ = 5 − 2 = 3。"},
+  {q:"等差数列首项 a₁=3，公差 d=2，它的第 6 项是多少？",opts:["11","13","15","12"],a:"13",why:"aₙ = a₁ + (n−1)d，所以 a₆ = 3 + 5×2 = 13。"},
+  {q:"等差数列的通项公式是？",opts:["aₙ=a₁+(n−1)d","aₙ=a₁qⁿ⁻¹","aₙ=nd","aₙ=a₁+d"],a:"aₙ=a₁+(n−1)d",why:"等差数列从首项到第 n 项，一共增加了 n−1 个公差。"},
+  {q:"等差数列 7，4，1，−2，… 的第 5 项是？",opts:["−3","−5","−6","−8"],a:"−5",why:"首项 7，公差 −3。a₅ = 7 + 4×(−3) = −5。"},
+  {q:"等差数列 a₁=4，a₄=13，则公差 d 是？",opts:["2","3","4","9"],a:"3",why:"a₄ = a₁ + 3d，因此 13 = 4 + 3d，解得 d=3。"}
+ ]},
+ {name:"等比洞穴",emoji:"💎",desc:"公比与通项",qs:[
+  {q:"等比数列 2，6，18，54，… 的公比 q 是？",opts:["2","3","4","6"],a:"3",why:"公比 q = a₂ ÷ a₁ = 6 ÷ 2 = 3。"},
+  {q:"等比数列首项 a₁=3，公比 q=2，第 5 项是多少？",opts:["24","32","48","96"],a:"48",why:"aₙ = a₁qⁿ⁻¹，所以 a₅ = 3×2⁴ = 48。"},
+  {q:"等比数列的通项公式是？",opts:["aₙ=a₁+(n−1)d","aₙ=a₁qⁿ⁻¹","aₙ=nq","aₙ=a₁+nq"],a:"aₙ=a₁qⁿ⁻¹",why:"等比数列每向后一项都乘以公比 q，所以第 n 项乘了 n−1 次 q。"},
+  {q:"等比数列 81，27，9，3，… 的第 5 项是？",opts:["1","1/3","0","−1"],a:"1",why:"公比 q=1/3，第 5 项为 3×1/3 = 1。"},
+  {q:"等比数列 a₁=5，q=−2，则 a₃ 是？",opts:["−10","20","−20","40"],a:"20",why:"a₃ = 5×(−2)² = 20，注意负数的偶次幂为正数。"}
+ ]},
+ {name:"求和城堡",emoji:"🏰",desc:"前 n 项和",qs:[
+  {q:"等差数列 1，3，5，7，9 的前 5 项和是多少？",opts:["20","25","30","35"],a:"25",why:"S₅ = (1+9)×5÷2 = 25。"},
+  {q:"等差数列前 n 项和公式是？",opts:["Sₙ=n(a₁+aₙ)/2","Sₙ=a₁qⁿ","Sₙ=na₁","Sₙ=a₁+(n−1)d"],a:"Sₙ=n(a₁+aₙ)/2",why:"等差数列求和可以首尾配对，平均每项为 (a₁+aₙ)/2。"},
+  {q:"等比数列 1，2，4，8 的前 4 项和是？",opts:["12","14","15","16"],a:"15",why:"1+2+4+8=15。"},
+  {q:"等比数列求和公式（q≠1）是？",opts:["Sₙ=na₁","Sₙ=a₁(1−qⁿ)/(1−q)","Sₙ=n(a₁+aₙ)/2","Sₙ=a₁qⁿ"],a:"Sₙ=a₁(1−qⁿ)/(1−q)",why:"等比数列前 n 项和 Sₙ = a₁(1−qⁿ)/(1−q)，也常写成 a₁(qⁿ−1)/(q−1)。"},
+  {q:"等差数列 a₁=2，d=2，前 4 项和是多少？",opts:["16","18","20","24"],a:"20",why:"数列为 2，4，6，8，S₄=(2+8)×4÷2=20。"}
+ ]}
+];
+let chapter=0,index=0,score=0,streak=0,answered=false,done=[];
+const $=id=>document.getElementById(id);
+function renderLevels(){ $("levels").innerHTML=chapters.map((c,i)=>`<div class="level ${i===chapter?'active':''} ${i>0&&!done.includes(i-1)?'locked':''}" onclick="chooseLevel(${i})"><div class="emoji">${c.emoji}</div><b>${i+1}. ${c.name}</b><small>${done.includes(i)?'✓ 已通关':c.desc}</small></div>`).join('');}
+function chooseLevel(i){if(i>0&&!done.includes(i-1))return;chapter=i;index=0;$("quiz").classList.remove("hidden");$("finish").classList.add("hidden");renderLevels();renderQuestion();}
+function renderQuestion(){let c=chapters[chapter],q=c.qs[index];answered=false;$("chapter").textContent=`${chapter+1} · ${c.name}`;$("qcount").textContent=`第 ${index+1} / ${c.qs.length} 题`;$("question").textContent=q.q;$("hint").textContent="";$("sequence").innerHTML=(q.seq||[]).map(x=>`<div class="num ${x==='?'?'blank':''}">${x}</div>`).join('');$("answers").innerHTML=q.opts.map((o,i)=>`<button class="answer" onclick="answer(${i})">${["A","B","C","D"][i]}. ${o}</button>`).join('');$("feedback").className="feedback";$("feedback").textContent="";$("next").disabled=true;$("next").textContent=index===c.qs.length-1?"完成本关 ✓":"下一题 →";$("tip").textContent="选出正确答案，获得 10 分";$("progress").style.width=((done.length+(index/c.qs.length))/chapters.length*100)+"%";}
+function answer(i){if(answered)return;answered=true;let q=chapters[chapter].qs[index],chosen=q.opts[i],ok=chosen===q.a;let buttons=[...document.querySelectorAll(".answer")];buttons.forEach((b,j)=>{b.disabled=true;if(q.opts[j]===q.a)b.classList.add("correct");else if(j===i)b.classList.add("wrong")});if(ok){score+=10;streak++;}else streak=0;$("score").textContent=score;$("streak").textContent=streak;$("feedback").className="feedback show "+(ok?"good":"bad");$("feedback").innerHTML=(ok?"<b>✓ 回答正确！+10 分</b>":"<b>再接再厉！正确答案是："+q.a+"</b>")+"<br>"+q.why;$("next").disabled=false;$("tip").textContent=ok?"太棒了，继续前进！":"记住这个知识点，下次会更好！";}
+function next(){if(!answered)return;if(index<chapters[chapter].qs.length-1){index++;renderQuestion();}else{done.push(chapter);done=[...new Set(done)];$("quiz").classList.add("hidden");$("finish").classList.remove("hidden");$("result").textContent=`你在「${chapters[chapter].name}」完成了 5 道题！当前累计 ${score} 分。${done.length===4?'你已经征服全部岛屿，成为数列大师！':'下一关已经解锁，继续探索吧！'}`;$("progress").style.width=(done.length/chapters.length*100)+"%";renderLevels();}}
+function restartLevel(){index=0;$("quiz").classList.remove("hidden");$("finish").classList.add("hidden");renderQuestion();}
+$("next").addEventListener("click",next);renderLevels();renderQuestion();
+</script>
+</body></html>
